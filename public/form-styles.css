@@ -1,0 +1,47 @@
+.form-wrap {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form-wrap form {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-wrap form label {
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+.form-wrap form input[type=text],
+.form-wrap form input[type=password] {
+	padding: 5px;
+	margin-bottom: 2em;
+}
+
+.form-wrap form input[type=submit] {
+	width: 30%;
+	display: block;
+	margin: 2em auto;
+}
+
+/* Error messages */
+.form-wrap .errors-wrap{
+	padding: 1em 2em;
+	margin: 0.5em 0em;
+}
+
+.form-wrap .errors-wrap ul {
+	width: 100%;
+	list-style: none;
+	text-align: center;
+}
+
+.form-wrap .errors-wrap ul li {
+	color: red;
+	line-height: 1.5em;
+}

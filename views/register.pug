@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	.form-wrap
+		h2 Register
+
+		if errors
+			.errors-wrap
+				ul
+					each error in errors
+						li #{error.msg}
+
+
+		form(action="/register", method="POST")
+			label(for="input_user") Username
+			input(type="text", name="username", id="input_user", placeholder="Username")
+
+			label(for="input_email") Email
+			input(type="text", name="email",id="input_email", placeholder="Email")
+
+			label(for="pass1") Password
+			input(type="password", name="pass1", id="pass1", placeholder="Password")
+
+			label(for="pass2") Repeat your password
+			input(type="password", name="pass2", id="pass2", placeholder="Repeat Password")
+
+			input(type="submit", value="Register")
+block head
+	link(rel="stylesheet", href="/form-styles.css")

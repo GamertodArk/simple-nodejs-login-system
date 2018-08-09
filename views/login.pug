@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	.form-wrap
+		h2 Login
+		
+		if errors
+			.errors-wrap
+				ul
+					each error in errors
+						li #{error.msg}
+
+		form(action="/login", method="POST")
+			label(for="input_user") Username
+			input(type="text", name="username",id="input_user", placeholder="Username")
+
+			label(for="input_pass") Password
+			input(type="password", name="password",id="input_pass", placeholder="Password")
+			
+			input(type="submit", value="Login")
+
+
+block head 
+	link(rel="stylesheet", href="/form-styles.css")
