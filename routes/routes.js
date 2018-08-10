@@ -5,11 +5,7 @@ const passportSetup = require('../config/users-passport');
 const {check, validationResult} = require('express-validator/check');
 
 router.get('/', (req, res) => {
-	if (req.user) {
-		res.render('home', {username: req.user.username});
-	}else {
-		res.render('home');
-	}
+	res.render('home', {username: req.user, success: req.flash('success')});
 });
 
 router.get('/login', (req, res) => {
@@ -40,7 +36,7 @@ router.post('/login',
 });
 
 router.get('/register', (req, res) => {
-	res.render('register');
+	res.render('register', {msg: req.flash('user_exits')});
 });
 
 // Register Handler
@@ -66,22 +62,35 @@ router.post('/register',(req, res) => {
 			return;
 		}
 
-	// Save the user
-	let newUser = {
-		username: req.body.username,
-		email: req.body.email,
-		password: req.body.pass1
-	}
+		// Check if the user already exits
+		User.checkIfExits(req.body.username, req.body.email, (isMatch) => {
 
-	User.saveUser(newUser, () => {
-		console.log(`New user was saved`);
-	});
-	res.json(req.body);
+			if (isMatch) {
+				// User exits
+				req.flash('user_exits', "The credencial you're entering are already in used, try changing the username or email");
+				res.redirect('/register');
+				return;
+			}else {
+				// Save the user
+				let newUser = {
+					username: req.body.username,
+					email: req.body.email,
+					password: req.body.pass1
+				}
+
+				User.saveUser(newUser, () => {
+					console.log(`New user was saved`);
+				});
+
+				req.flash('success', 'You are successfully registered and new can log in');
+				res.redirect('/');
+			}
+		});
 });
 
 router.get('/profile', (req, res) => {
 	if (req.user) {
-		res.render('profile', {username: req.user.username});
+		res.render('profile', {username: req.user});
 	}else {
 		res.redirect('/')
 	}

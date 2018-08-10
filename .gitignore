@@ -1,1 +1,5 @@
+# Exclude all the modules
 node_modules/
+
+# Exclude the keys used in the app
+keys.js

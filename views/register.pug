@@ -3,6 +3,11 @@ extends layout
 block content
 	.form-wrap
 		h2 Register
+		
+		if msg[0]
+			.errors-wrap
+				p(style="text-align:center;") #{msg[0]}
+		
 
 		if errors
 			.errors-wrap

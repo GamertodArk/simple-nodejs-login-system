@@ -2,3 +2,6 @@ extends layout
 
 block content
 	h2 This is the home
+
+	if success[0]
+		p(style="color:#00c300;") #{success[0]}

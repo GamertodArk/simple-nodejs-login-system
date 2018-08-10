@@ -29,6 +29,7 @@
 	margin: 2em auto;
 }
 
+
 /* Error messages */
 .form-wrap .errors-wrap{
 	padding: 1em 2em;
@@ -41,7 +42,8 @@
 	text-align: center;
 }
 
-.form-wrap .errors-wrap ul li {
+.form-wrap .errors-wrap ul li,
+.form-wrap .errors-wrap p {
 	color: red;
 	line-height: 1.5em;
 }
