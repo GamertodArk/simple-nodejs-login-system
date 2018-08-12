@@ -4,6 +4,11 @@ block content
 	.form-wrap
 		h2 Login
 		
+		if loginFailure
+			.errors-wrap
+				ul
+					li #{loginFailure}
+
 		if errors
 			.errors-wrap
 				ul

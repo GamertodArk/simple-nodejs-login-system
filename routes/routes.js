@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-	res.render('login');
+	res.render('login', {loginFailure: req.flash('error')[0]});
 });
 
 router.get('/logout', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/logout', (req, res) => {
 
 // Login Handler
 router.post('/login', 
-	passport.authenticate('local', {failureRedirect: '/users/login', failureFlash: 'Invalid username or password'}),
+	passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid username or password'}),
 	(req, res) => {
 
 		// Validations
